@@ -144,10 +144,8 @@ Isabelle&nbsp;DE&nbsp;&nbsp;| `((Atprop ''p'') \<^sub>F) \<^sub>S \<turnstile> (
 ((Atprop ''p'') \<^sub>F) \<^sub>S \<turnstile> B\<^sub>S ((Atprop ''p'') \<^sub>F) \<^sub>S ;\<^sub>S ((Atprop ''q'') \<^sub>F) \<^sub>S
 \<Longleftarrow> PT (ImpR_comma_disp2) [
     B\<^sub>S ((Atprop ''p'') \<^sub>F) \<^sub>S \<rightarrow>\<^sub>S ((Atprop ''p'') \<^sub>F) \<^sub>S \<turnstile> ((Atprop ''q'') \<^sub>F) \<^sub>S 
-    \<Longleftarrow> PT (W_impR_L) [
-        ((Atprop ''p'') \<^sub>F) \<^sub>S \<turnstile> ((Atprop ''p'') \<^sub>F) \<^sub>S \<Longleftarrow> PT (Id) []
-    ]
-]
+\<Longleftarrow> PT (W_impR_L) [
+    ((Atprop ''p'') \<^sub>F) \<^sub>S \<turnstile> ((Atprop ''p'') \<^sub>F) \<^sub>S \<Longleftarrow> PT (Id) []]]
 ~~~
 {: .code}
 
