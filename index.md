@@ -80,27 +80,27 @@ Isabelle&nbsp;DE&nbsp;&nbsp;| `((Atprop ''p'') \<^sub>F) <sub>S</sub> \<turnstil
 
 ## Structural Rules
 
-<img class="image" src="{{site.baseurl}}/files/structural1.svg">
+<img class="image" src="https://rawgit.com/goodlyrottenapple/alcop2015/gh-pages/files/structural1.svg">
 
 ## Structural Rules
 
-<img class="image" src="{{site.baseurl}}/files/structural2.svg">
+<img class="image" src="https://rawgit.com/goodlyrottenapple/alcop2015/gh-pages/files/structural2.svg">
 
 ## Display Postulates
 
-<img class="image" src="{{site.baseurl}}/files/display.svg">
+<img class="image" src="https://rawgit.com/goodlyrottenapple/alcop2015/gh-pages/files/display.svg">
 
 ## Grishin Rules
 
-<img class="image" src="{{site.baseurl}}/files/grishin.svg">
+<img class="image" src="https://rawgit.com/goodlyrottenapple/alcop2015/gh-pages/files/grishin.svg">
 
 ## Operational Rules
 
-<img class="image" src="{{site.baseurl}}/files/op1.svg">
+<img class="image" src="https://rawgit.com/goodlyrottenapple/alcop2015/gh-pages/files/op1.svg">
 
 ## Operational Rules
 
-<img class="image" src="{{site.baseurl}}/files/op2.svg">
+<img class="image" src="https://rawgit.com/goodlyrottenapple/alcop2015/gh-pages/files/op2.svg">
 
 
 ## **109 in total**
