@@ -23,6 +23,9 @@ style: |
     #Picture h2 {
         color:#FFF;
         }
+    .image {
+        width:32em;
+        }
     .note {
         font-size:16px
     }
@@ -41,8 +44,9 @@ style: |
 
 # Calculus Toolbox {#Cover}
 
-*Samuel Balco, 8 May 2015, [ALCOP 2015](http://www.appliedlogictudelft.nl/alcop-2015/)*
-
+*Samuel Balco, 8 May 2015, [ALCOP 2015](http://www.appliedlogictudelft.nl/alcop-2015/)  
+joint work with Giuseppe Greco and Alexander Kurz*
+<br>
 <br>
 
 <div class="logo"></div>
@@ -56,71 +60,6 @@ style: |
 
 ## **Motivation for the toolbox**
 
-## Minimal Calculus
-
-+   ...Derived from a bigger D.EAK calculus, however
-    +   ...contains fewer rules
-    +   ...and Nullary/Unary/Binary connectives 
-+   ...Initially used to test out the encoding of a display calculus in Isabelle, including
-    +   ...a shallow and deep embedding
-    +   ...proofs of equality between SE and DE
-
-## Minimal Calculus Terms
-
-Formulas  
-$F:= ap \in \mathsf{AtProp} \mid F \land F \mid F \rightarrow F$  
-Structures  
-$S:= F \mid \mathsf{Id} \mid S \,; S \mid S > S$  
-Sequents  
-$S \vdash S$
-
-## Minimal Calculus SE
-
-~~~isabelle
-type_synonym atProp = string
-
-datatype formula = Atprop atProp
-                 | And_F formula formula  (infix "∧F" 570)
-                 | ImpR_F formula formula (infix "→F" 550)
-
-datatype structures = Form formula
-                    | Neutral ("I") 
-                    | Comma structures structures (infix ";" 450)
-                    | ImpR structures structures (infix ">>" 430)
-~~~
-
-## **Limitation of the SE...**
-
-## **proof trees not first class citizens**
-
-## Minimal Calculus DE
-
-~~~isabelle
-datatype Atprop = Atprop string | Atprop_Freevar string
-
-datatype Formula_BinOp = Formula_And | Formula_ImpR
-datatype Formula = Formula_Atprop Atprop
-                 | Formula_Bin Formula Formula_BinOp Formula
-                 | Formula_Freevar string
-~~~
-
-{: .note}
-_Note that the sugar notation, similar to the one used in SE, has been omitted in this code snippet_
-
-## Minimal Calculus DE 2
-
-~~~isabelle
-datatype Structure_ZerOp = Structure_Neutral
-datatype Structure_BinOp = Structure_Comma | Structure_ImpR
-datatype Structure = Structure_Formula Formula
-                   | Structure_Zer Structure_ZerOp
-                   | Structure_Bin Structure Structure_BinOp Structure
-                   | Structure_Freevar string
- 
-datatype Sequent = Sequent_Structure Structure 
-                 | Sequent Structure Structure
-~~~
-
 ## **Limitation of DE...**
 
 ## **verbose encoding...**
@@ -133,20 +72,67 @@ Encoding                    |
 :---------------------------|:---------------------------------------
 LaTeX                       | `p \vdash p`
 No sugar                    | `Sequent (Structure_Formula (Formula_Atprop (Atprop ''p''))) (Structure_Formula (Formula_Atprop (Atprop ''p'')))`
-Isabelle&nbsp;DE&nbsp;&nbsp;| `((Atprop ''p'') \<^sub>F) \<^sub>S \<turnstile> ((Atprop ''p'') \<^sub>F) \<^sub>S`
+Isabelle&nbsp;DE&nbsp;&nbsp;| `((Atprop ''p'') \<^sub>F) <sub>S</sub> \<turnstile> ((Atprop ''p'') \<^sub>F) <sub>S</sub>`
 
 
-## **Another problem...**
+## **Rule encoding**
+
+
+## Structural Rules
+
+<img class="image" src="{{site.baseurl}}/files/structural1.svg">
+
+## Structural Rules
+
+<img class="image" src="{{site.baseurl}}/files/structural2.svg">
+
+## Display Postulates
+
+<img class="image" src="{{site.baseurl}}/files/display.svg">
+
+## Grishin Rules
+
+<img class="image" src="{{site.baseurl}}/files/grishin.svg">
+
+## Operational Rules
+
+<img class="image" src="{{site.baseurl}}/files/op1.svg">
+
+## Operational Rules
+
+<img class="image" src="{{site.baseurl}}/files/op2.svg">
+
+
+## **109 in total**
+
+## Rule encoding
+
+<table>
+    <tr class="next">
+        <td>Isabelle:&nbsp;&nbsp;</td>
+        <td><pre><code>"ruleRuleStructAct x RuleStructAct.FS_A_L = ((ActS<sub>S</sub> (forwA<sub>S</sub>) (?<sub>Act</sub> ''a'') (B<sub>S</sub> (?<sub>S</sub> ''Y'') (→<sub>S</sub>) (?<sub>S</sub> ''Z''))) ⊢ (?<sub>S</sub> ''X'')) ⟹RD (λx. Some [((B<sub>S</sub> (ActS<sub>S</sub> (forwA<sub>S</sub>) (?<sub>Act</sub> ''a'') (?<sub>S</sub> ''Y'')) (→<sub>S</sub>) (ActS<sub>S</sub> (forwA<sub>S</sub>) (?<sub>Act</sub> ''a'') (?<sub>S</sub> ''Z''))) ⊢ (?<sub>S</sub> ''X''))])"</code></pre></td>
+    </tr>
+    <tr class="next">
+        <td>JSON: </td>
+        <td><pre class="code"><code>"FS_A_L" : ["forwA Act?a (?Y >> ?Z) |- ?X", 
+"(forwA Act?a ?Y) >> (forwA Act?a ?Z) |- ?X"]</code></pre></td>
+    </tr>
+</table>
+
 
 ## A sample proof tree
 
-~~~
-((Atprop ''p'') \<^sub>F) \<^sub>S \<turnstile> B\<^sub>S ((Atprop ''p'') \<^sub>F) \<^sub>S ;\<^sub>S ((Atprop ''q'') \<^sub>F) \<^sub>S
-\<Longleftarrow> PT (ImpR_comma_disp2) [
-    B\<^sub>S ((Atprop ''p'') \<^sub>F) \<^sub>S \<rightarrow>\<^sub>S ((Atprop ''p'') \<^sub>F) \<^sub>S \<turnstile> ((Atprop ''q'') \<^sub>F) \<^sub>S 
-\<Longleftarrow> PT (W_impR_L) [
-    ((Atprop ''p'') \<^sub>F) \<^sub>S \<turnstile> ((Atprop ''p'') \<^sub>F) \<^sub>S \<Longleftarrow> PT (Id) []]]
-~~~
+<pre markdown="1"><code>
+(((((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) \&lt;turnstile>\&lt;^sub>S (B\&lt;^sub>S (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) (;\&lt;^sub>S) (((Atprop ''q'') \&lt;^sub>F) \&lt;^sub>S))) \&lt;Longleftarrow> PT (RuleDisp (ImpR_comma_disp2)) [(((B\&lt;^sub>S (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) (\&lt;rightarrow>\&lt;^sub>S) (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S)) \&lt;turnstile>\&lt;^sub>S (((Atprop ''q'') \&lt;^sub>F) \&lt;^sub>S)) \&lt;Longleftarrow> PT (RuleStruct (W_impR_L)) [(((((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) \&lt;turnstile>\&lt;^sub>S (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S)) \&lt;Longleftarrow> PT (RuleZer (Id)) [])])])
+</code></pre>
+{: .code}
+
+
+## A sample proof tree
+
+<pre><code>(Atprop ''p'' <sub>F</sub> <sub>S</sub> ⊢<sub>S</sub> B<sub>S</sub> Atprop ''p'' <sub>F</sub> <sub>S</sub> ;<sub>S</sub> Atprop ''q'' <sub>F</sub> <sub>S</sub>) ⟸ PT  RuleDisp ImpR_comma_disp2  
+[(B<sub>S</sub> Atprop ''p'' <sub>F</sub> <sub>S</sub> →<sub>S</sub> Atprop ''p'' <sub>F</sub> <sub>S</sub> ⊢<sub>S</sub> Atprop ''q'' <sub>F</sub> <sub>S</sub>) ⟸ PT  RuleStruct W_impR_L
+[(Atprop ''p'' <sub>F</sub> <sub>S</sub> ⊢<sub>S</sub> Atprop ''p'' <sub>F</sub> <sub>S</sub>) ⟸ PT  RuleZer RuleZer.Id  []]]</code></pre>
 {: .code}
 
 
