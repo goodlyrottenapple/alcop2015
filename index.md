@@ -60,19 +60,19 @@ joint work with Giuseppe Greco and Alexander Kurz*
 
 ## **Motivation for the toolbox**
 
-## **Limitation of DE...**
+## **Parametric encoding in Isabelle...**
 
-## **verbose encoding...**
+## **Verbose encoding...**
 
 ## **$p \vdash p$**
 
 ## $p \vdash p$
 
-Encoding                    |
+
 :---------------------------|:---------------------------------------
-LaTeX                       | `p \vdash p`
-No sugar                    | `Sequent (Structure_Formula (Formula_Atprop (Atprop ''p''))) (Structure_Formula (Formula_Atprop (Atprop ''p'')))`
-Isabelle&nbsp;DE&nbsp;&nbsp;| `((Atprop ''p'') \<^sub>F) <sub>S</sub> \<turnstile> ((Atprop ''p'') \<^sub>F) <sub>S</sub>`
+...LaTeX                       | ...`p \vdash p`
+...No sugar                    | ...`Sequent (Structure_Formula (Formula_Atprop (Atprop ''p''))) (Structure_Formula (Formula_Atprop (Atprop ''p'')))`
+...Isabelle&nbsp;DE&nbsp;&nbsp;| ...`((Atprop ''p'') \<^sub>F) <sub>S</sub> \<turnstile> ((Atprop ''p'') \<^sub>F) <sub>S</sub>`
 
 
 ## **Rule encoding**
@@ -113,17 +113,16 @@ Isabelle&nbsp;DE&nbsp;&nbsp;| `((Atprop ''p'') \<^sub>F) <sub>S</sub> \<turnstil
         <td><pre><code>"ruleRuleStructAct x RuleStructAct.FS_A_L = ((ActS<sub>S</sub> (forwA<sub>S</sub>) (?<sub>Act</sub> ''a'') (B<sub>S</sub> (?<sub>S</sub> ''Y'') (→<sub>S</sub>) (?<sub>S</sub> ''Z''))) ⊢ (?<sub>S</sub> ''X'')) ⟹RD (λx. Some [((B<sub>S</sub> (ActS<sub>S</sub> (forwA<sub>S</sub>) (?<sub>Act</sub> ''a'') (?<sub>S</sub> ''Y'')) (→<sub>S</sub>) (ActS<sub>S</sub> (forwA<sub>S</sub>) (?<sub>Act</sub> ''a'') (?<sub>S</sub> ''Z''))) ⊢ (?<sub>S</sub> ''X''))])"</code></pre></td>
     </tr>
     <tr class="next">
-        <td>JSON: </td>
+        <td>JSON*: </td>
         <td><pre class="code"><code>"FS_A_L" : ["forwA Act?a (?Y >> ?Z) |- ?X", 
 "(forwA Act?a ?Y) >> (forwA Act?a ?Z) |- ?X"]</code></pre></td>
     </tr>
 </table>
 
-
+ 
 ## A sample proof tree
 
-<pre markdown="1"><code>
-(((((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) \&lt;turnstile>\&lt;^sub>S (B\&lt;^sub>S (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) (;\&lt;^sub>S) (((Atprop ''q'') \&lt;^sub>F) \&lt;^sub>S))) \&lt;Longleftarrow> PT (RuleDisp (ImpR_comma_disp2)) [(((B\&lt;^sub>S (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) (\&lt;rightarrow>\&lt;^sub>S) (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S)) \&lt;turnstile>\&lt;^sub>S (((Atprop ''q'') \&lt;^sub>F) \&lt;^sub>S)) \&lt;Longleftarrow> PT (RuleStruct (W_impR_L)) [(((((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) \&lt;turnstile>\&lt;^sub>S (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S)) \&lt;Longleftarrow> PT (RuleZer (Id)) [])])])
+<pre markdown="1"><code>(((((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) \&lt;turnstile>\&lt;^sub>S (B\&lt;^sub>S (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) (;\&lt;^sub>S) (((Atprop ''q'') \&lt;^sub>F) \&lt;^sub>S))) \&lt;Longleftarrow> PT (RuleDisp (ImpR_comma_disp2)) [(((B\&lt;^sub>S (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) (\&lt;rightarrow>\&lt;^sub>S) (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S)) \&lt;turnstile>\&lt;^sub>S (((Atprop ''q'') \&lt;^sub>F) \&lt;^sub>S)) \&lt;Longleftarrow> PT (RuleStruct (W_impR_L)) [(((((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S) \&lt;turnstile>\&lt;^sub>S (((Atprop ''p'') \&lt;^sub>F) \&lt;^sub>S)) \&lt;Longleftarrow> PT (RuleZer (Id)) [])])])
 </code></pre>
 {: .code}
 
@@ -147,3 +146,11 @@ $$\frac{\displaystyle \frac
 
 
 ## __[Demo]__
+
+## Links
+
+Code: [github.com/goodlyrottenapple/calculus-toolbox](https://github.com/goodlyrottenapple/calculus-toolbox/)
+
+Docs: [goodlyrottenapple.github.io/calculus-toolbox](https://goodlyrottenapple.github.io/calculus-toolbox/)
+
+## __Thank You.__
