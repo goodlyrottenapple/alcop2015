@@ -145,7 +145,7 @@ $$\frac{\displaystyle \frac
 </div>
 
 
-## __[Demo]__
+## __Demo__
 
 ## Links
 
