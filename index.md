@@ -69,10 +69,10 @@ joint work with Giuseppe Greco and Alexander Kurz*
 ## $p \vdash p$
 
 
-:---------------------------|:---------------------------------------
-...LaTeX                       | ...`p \vdash p`
-...No sugar                    | ...`Sequent (Structure_Formula (Formula_Atprop (Atprop ''p''))) (Structure_Formula (Formula_Atprop (Atprop ''p'')))`
-...Isabelle&nbsp;DE&nbsp;&nbsp;| ...`((Atprop ''p'') \<^sub>F) <sub>S</sub> \<turnstile> ((Atprop ''p'') \<^sub>F) <sub>S</sub>`
+:----------------------------------|:---------------------------------------
+...LaTeX                           | ...`p \vdash p`
+...No&nbsp;&nbsp;sugar&nbsp;&nbsp; | ...`Sequent (Structure_Formula (Formula_Atprop (Atprop ''p''))) (Structure_Formula (Formula_Atprop (Atprop ''p'')))`
+...Isabelle                        | ...<code>((Atprop ''p'') <sub>F</sub>) <sub>S</sub> ⊢ ((Atprop ''p'') <sub>F</sub>) <sub>S</sub></code>
 
 
 ## **Rule encoding**
